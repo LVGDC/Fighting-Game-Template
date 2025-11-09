@@ -1,14 +1,27 @@
-[gd_scene load_steps=7 format=4 uid="uid://bp0fpg3wk76h0"]
+[gd_scene load_steps=12 format=4 uid="uid://bp0fpg3wk76h0"]
 
 [ext_resource type="TileSet" uid="uid://bmiv6igc1clf6" path="res://assets/Dungeon Ruins Tileset/new_tile_set.tres" id="1_epypp"]
-[ext_resource type="Texture2D" uid="uid://d1qtr1jph4ncn" path="res://assets/BattingGirl_Download Free/Sprite individuals/BattingGirl_Idle1.png" id="2_0hol4"]
+[ext_resource type="SpriteFrames" uid="uid://b8bovjnwjfpvt" path="res://assets/BattingGirl_Download Free/Sprite Sheet/new_sprite_frames.tres" id="2_kdubu"]
 [ext_resource type="Script" uid="uid://boyhxn4vhkshn" path="res://scripts/player.gd" id="3_kdubu"]
 [ext_resource type="Texture2D" uid="uid://bl6p0alcp0pld" path="res://assets/BruteArms_FreeDownload/Sprite individuals/BruteArm_Idle1.png" id="3_q6r6c"]
+[ext_resource type="Script" uid="uid://dtcy2gerwx3du" path="res://scripts/StateMachine.gd" id="4_kdubu"]
 [ext_resource type="Script" uid="uid://kwi56umj3keg" path="res://scripts/enemy.gd" id="5_d21ai"]
+[ext_resource type="Script" uid="uid://dud77gojat0h7" path="res://idle.gd" id="5_rj586"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kdubu"]
 cull_mode = 2
 polygon = PackedVector2Array(12, 29, 30, -652, 2230, -633, 2379, 62, 1858, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
+size = Vector2(51.5254, 75.6522)
+
+[sub_resource type="Animation" id="Animation_d21ai"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rj586"]
+_data = {
+&"idle": SubResource("Animation_d21ai")
+}
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-4, 505)
@@ -21,13 +34,35 @@ tile_set = ExtResource("1_epypp")
 position = Vector2(-54, -35)
 occluder = SubResource("OccluderPolygon2D_kdubu")
 
-[node name="player" type="Sprite2D" parent="."]
+[node name="PlayerBody" type="CharacterBody2D" parent="." groups=["player"]]
+physics_interpolation_mode = 1
 position = Vector2(371, -53.5)
 scale = Vector2(1.18, 1.15)
-texture = ExtResource("2_0hol4")
 script = ExtResource("3_kdubu")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
+[node name="player" type="AnimatedSprite2D" parent="PlayerBody"]
+scale = Vector2(1, 1)
+sprite_frames = ExtResource("2_kdubu")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
+position = Vector2(-15.7627, 7.82608)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_d21ai")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerBody"]
+root_node = NodePath("../player")
+libraries = {
+&"": SubResource("AnimationLibrary_rj586")
+}
+
+[node name="StateMachine" type="Node" parent="PlayerBody" node_paths=PackedStringArray("start_state")]
+script = ExtResource("4_kdubu")
+start_state = NodePath("idle")
+metadata/_custom_type_script = "uid://dtcy2gerwx3du"
+
+[node name="idle" type="Node2D" parent="PlayerBody/StateMachine"]
+script = ExtResource("5_rj586")
 
 [node name="enemy" type="Sprite2D" parent="."]
 position = Vector2(659, -50)
