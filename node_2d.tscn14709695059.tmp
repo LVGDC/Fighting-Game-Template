@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bp0fpg3wk76h0"]
+[gd_scene load_steps=12 format=4 uid="uid://bp0fpg3wk76h0"]
 
 [ext_resource type="TileSet" uid="uid://bmiv6igc1clf6" path="res://assets/Dungeon Ruins Tileset/new_tile_set.tres" id="1_epypp"]
 [ext_resource type="SpriteFrames" uid="uid://b8bovjnwjfpvt" path="res://assets/BattingGirl_Download Free/Sprite Sheet/new_sprite_frames.tres" id="2_kdubu"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://dtcy2gerwx3du" path="res://scripts/StateMachine.gd" id="4_kdubu"]
 [ext_resource type="Script" uid="uid://kwi56umj3keg" path="res://scripts/enemy.gd" id="5_d21ai"]
 [ext_resource type="Script" uid="uid://dud77gojat0h7" path="res://scripts/idle.gd" id="5_rj586"]
-[ext_resource type="Script" uid="uid://opw1looff53f" path="res://scripts/walk.gd" id="6_rj586"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kdubu"]
 cull_mode = 2
@@ -18,92 +17,10 @@ size = Vector2(52.8814, 75.6522)
 
 [sub_resource type="Animation" id="Animation_d21ai"]
 resource_name = "idle"
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.533333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"idle", &"walk"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-}
-
-[sub_resource type="Animation" id="Animation_rj586"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [14]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle"]
-}
-
-[sub_resource type="Animation" id="Animation_4d7sh"]
-resource_name = "walk"
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 0, 0, 0, 0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rj586"]
 _data = {
-&"RESET": SubResource("Animation_rj586"),
-&"idle": SubResource("Animation_d21ai"),
-&"walk": SubResource("Animation_4d7sh")
+&"idle": SubResource("Animation_d21ai")
 }
 
 [node name="Node2D" type="Node2D"]
@@ -148,15 +65,8 @@ script = ExtResource("4_kdubu")
 start_state = NodePath("idle")
 metadata/_custom_type_script = "uid://dtcy2gerwx3du"
 
-[node name="idle" type="Node2D" parent="PlayerBody/StateMachine" node_paths=PackedStringArray("idle_state", "walk_state")]
+[node name="idle" type="Node2D" parent="PlayerBody/StateMachine"]
 script = ExtResource("5_rj586")
-idle_state = NodePath(".")
-walk_state = NodePath("../walk")
-
-[node name="walk" type="Node2D" parent="PlayerBody/StateMachine" node_paths=PackedStringArray("idle_state", "walk_state")]
-script = ExtResource("6_rj586")
-idle_state = NodePath("../idle")
-walk_state = NodePath(".")
 
 [node name="enemy" type="Sprite2D" parent="."]
 position = Vector2(659, -50)

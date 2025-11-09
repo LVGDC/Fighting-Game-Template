@@ -13,7 +13,8 @@ var walk_anim: String = "walk"
 
 #buttons
 var movement_key:String ="Movement"
-
+var left_key:String = "Left"
+var right_key:String ="Right"
 func process_physics(delta:float)->State:
 	player.velocity.y +=gravity * delta
 	player.move_and_slide()
