@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://b8bovjnwjfpvt"]
+[gd_resource type="SpriteFrames" load_steps=24 format=3 uid="uid://b8bovjnwjfpvt"]
 
 [ext_resource type="Texture2D" uid="uid://crs3sm40m60e1" path="res://assets/BattingGirl_Download Free/Sprite Sheet/BattingGirl_Idle-Sheet.png" id="1_prxfu"]
+[ext_resource type="Texture2D" uid="uid://drp0syq12msft" path="res://assets/BattingGirl_Download Free/Sprite Sheet/BattingGirl_Walk-Sheet.png" id="2_q63ym"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q63ym"]
 atlas = ExtResource("1_prxfu")
@@ -62,6 +63,30 @@ region = Rect2(1300, 0, 100, 100)
 atlas = ExtResource("1_prxfu")
 region = Rect2(1400, 0, 100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgis8"]
+atlas = ExtResource("2_q63ym")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yk3v"]
+atlas = ExtResource("2_q63ym")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtb40"]
+atlas = ExtResource("2_q63ym")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkjad"]
+atlas = ExtResource("2_q63ym")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57cf7"]
+atlas = ExtResource("2_q63ym")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23spf"]
+atlas = ExtResource("2_q63ym")
+region = Rect2(500, 0, 100, 100)
+
 [resource]
 animations = [{
 "frames": [{
@@ -112,5 +137,28 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgis8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yk3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtb40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkjad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57cf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23spf")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 60.0
 }]
