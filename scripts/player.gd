@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var anim: AnimationPlayer = $AnimationPlayer
-
+@onready var sprite: AnimatedSprite2D = $player
 func _ready() -> void:
 	state_machine.init()
 func _process(delta: float) -> void:

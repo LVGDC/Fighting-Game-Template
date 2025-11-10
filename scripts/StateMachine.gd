@@ -16,6 +16,6 @@ func process_physics(delta:float)->void:
 	
 func change_state(new_state: State) ->void:
 	if curr_state:
-		curr_state.exit()
+		curr_state.exit(new_state)
 	curr_state = new_state
 	curr_state.enter()
