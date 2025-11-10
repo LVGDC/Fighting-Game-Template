@@ -1,142 +1,17 @@
-[gd_scene load_steps=18 format=4 uid="uid://bp0fpg3wk76h0"]
+[gd_scene load_steps=8 format=4 uid="uid://bp0fpg3wk76h0"]
 
 [ext_resource type="TileSet" uid="uid://bmiv6igc1clf6" path="res://assets/Dungeon Ruins Tileset/new_tile_set.tres" id="1_epypp"]
-[ext_resource type="SpriteFrames" uid="uid://b8bovjnwjfpvt" path="res://assets/BattingGirl_Download Free/Sprite Sheet/new_sprite_frames.tres" id="2_kdubu"]
-[ext_resource type="Script" uid="uid://boyhxn4vhkshn" path="res://scripts/player.gd" id="3_kdubu"]
+[ext_resource type="PackedScene" uid="uid://onj78yl22ofd" path="res://player.tscn" id="2_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://bl6p0alcp0pld" path="res://assets/BruteArms_FreeDownload/Sprite individuals/BruteArm_Idle1.png" id="3_q6r6c"]
-[ext_resource type="Animation" uid="uid://b66ppjawaanng" path="res://anims/kick.res" id="4_4d7sh"]
-[ext_resource type="Script" uid="uid://dtcy2gerwx3du" path="res://scripts/StateMachine.gd" id="4_kdubu"]
 [ext_resource type="Script" uid="uid://kwi56umj3keg" path="res://scripts/enemy.gd" id="5_d21ai"]
-[ext_resource type="Script" uid="uid://dud77gojat0h7" path="res://scripts/idle.gd" id="5_rj586"]
-[ext_resource type="Script" uid="uid://opw1looff53f" path="res://scripts/walk.gd" id="6_rj586"]
-[ext_resource type="Script" uid="uid://dce462nehdmyo" path="res://scripts/punch.gd" id="8_ir8iy"]
+[ext_resource type="Script" uid="uid://b6dcreyjtxkur" path="res://scripts/hurtbox.gd" id="12_x0ka3"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kdubu"]
 cull_mode = 2
-polygon = PackedVector2Array(12, 29, 30, -652, 2230, -633, 2379, 62, 1858, 76)
+polygon = PackedVector2Array(12, 29, 30, -652, 2230, -633, 2379, 62, 1858, 76, 705, 91)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
-size = Vector2(52.8814, 75.6522)
-
-[sub_resource type="Animation" id="Animation_rj586"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [14]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle"]
-}
-
-[sub_resource type="Animation" id="Animation_d21ai"]
-resource_name = "idle"
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.533333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"idle", &"walk"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-}
-
-[sub_resource type="Animation" id="Animation_4d7sh"]
-resource_name = "walk"
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 0, 0, 0, 0]
-}
-
-[sub_resource type="Animation" id="Animation_ir8iy"]
-resource_name = "punch"
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"punch"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rj586"]
-_data = {
-&"RESET": SubResource("Animation_rj586"),
-&"idle": SubResource("Animation_d21ai"),
-&"kick": ExtResource("4_4d7sh"),
-&"punch": SubResource("Animation_ir8iy"),
-&"walk": SubResource("Animation_4d7sh")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8wp"]
+size = Vector2(96, 103.25)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-4, 505)
@@ -149,53 +24,26 @@ tile_set = ExtResource("1_epypp")
 collision_visibility_mode = 1
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="TileMapLayer"]
-position = Vector2(-54, -35)
+position = Vector2(-37, -66)
 occluder = SubResource("OccluderPolygon2D_kdubu")
+occluder_light_mask = 3
 
-[node name="PlayerBody" type="CharacterBody2D" parent="." groups=["player"]]
-physics_interpolation_mode = 1
-position = Vector2(371, -53.5)
-scale = Vector2(1.18, 1.15)
-script = ExtResource("3_kdubu")
-
-[node name="player" type="AnimatedSprite2D" parent="PlayerBody"]
-position = Vector2(12.7119, -14.3478)
-sprite_frames = ExtResource("2_kdubu")
-animation = &"idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
-position = Vector2(7.62713, -3.04349)
-shape = SubResource("RectangleShape2D_d21ai")
-one_way_collision = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerBody"]
-root_node = NodePath("../player")
-libraries = {
-&"": SubResource("AnimationLibrary_rj586")
-}
-
-[node name="StateMachine" type="Node" parent="PlayerBody" node_paths=PackedStringArray("start_state")]
-script = ExtResource("4_kdubu")
-start_state = NodePath("idle")
-metadata/_custom_type_script = "uid://dtcy2gerwx3du"
-
-[node name="idle" type="Node2D" parent="PlayerBody/StateMachine" node_paths=PackedStringArray("walk_state", "punch_state")]
-script = ExtResource("5_rj586")
-walk_state = NodePath("../walk")
-punch_state = NodePath("../punch")
-
-[node name="walk" type="Node2D" parent="PlayerBody/StateMachine" node_paths=PackedStringArray("idle_state", "punch_state")]
-script = ExtResource("6_rj586")
-idle_state = NodePath("../idle")
-punch_state = NodePath("../punch")
-
-[node name="punch" type="Node2D" parent="PlayerBody/StateMachine" node_paths=PackedStringArray("idle_state", "walk_state")]
-script = ExtResource("8_ir8iy")
-idle_state = NodePath("../idle")
-walk_state = NodePath("../walk")
+[node name="PlayerBody" parent="." instance=ExtResource("2_q6r6c")]
+position = Vector2(375, -52)
 
 [node name="enemy" type="Sprite2D" parent="."]
-position = Vector2(659, -50)
+position = Vector2(532, -71)
 texture = ExtResource("3_q6r6c")
 flip_h = true
 script = ExtResource("5_d21ai")
+
+[node name="HurtBox" type="Area2D" parent="enemy"]
+position = Vector2(115, 3)
+script = ExtResource("12_x0ka3")
+metadata/_custom_type_script = "uid://b6dcreyjtxkur"
+
+[node name="area" type="CollisionShape2D" parent="enemy/HurtBox"]
+show_behind_parent = true
+position = Vector2(-115, -4.375)
+shape = SubResource("RectangleShape2D_nr8wp")
+debug_color = Color(0.539549, 0.407726, 1, 0.42)
