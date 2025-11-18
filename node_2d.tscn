@@ -13,7 +13,7 @@ polygon = PackedVector2Array(12, 29, 30, -652, 2230, -633, 2379, 62, 1858, 76, 7
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8wp"]
 size = Vector2(96, 103.25)
 
-[node name="Node2D" type="Node2D"]
+[node name="main" type="Node2D"]
 position = Vector2(-4, 505)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
